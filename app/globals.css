@@ -1,0 +1,136 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ---------- Design tokens: OCEAN 2030 ---------- */
+:root {
+  /* light theme */
+  --bg: 241 245 249; /* foam */
+  --bg-2: 255 255 255;
+  --fg: 5 11 26; /* abyss */
+  --muted: 71 85 105;
+  --line: 15 23 42;
+  --card: 255 255 255;
+  --accent: 8 145 178;
+  --glass: 255 255 255;
+  --glass-alpha: 0.65;
+  --mesh: radial-gradient(at 20% 10%, rgb(34 211 238 / 0.22) 0px, transparent 50%),
+    radial-gradient(at 80% 0%, rgb(139 92 246 / 0.16) 0px, transparent 50%),
+    radial-gradient(at 50% 90%, rgb(45 212 191 / 0.16) 0px, transparent 55%);
+  color-scheme: light;
+}
+
+.dark {
+  --bg: 5 11 26; /* abyss */
+  --bg-2: 10 26 58; /* deep navy */
+  --fg: 241 245 249; /* foam */
+  --muted: 148 163 184;
+  --line: 226 232 240;
+  --card: 10 26 58;
+  --accent: 34 211 238;
+  --glass: 10 26 58;
+  --glass-alpha: 0.45;
+  --mesh: radial-gradient(at 20% 10%, rgb(34 211 238 / 0.16) 0px, transparent 50%),
+    radial-gradient(at 80% 0%, rgb(139 92 246 / 0.2) 0px, transparent 50%),
+    radial-gradient(at 50% 90%, rgb(45 212 191 / 0.12) 0px, transparent 55%);
+  color-scheme: dark;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    overflow-x: clip;
+  }
+  body {
+    @apply bg-bg text-fg font-body antialiased;
+    background-image: var(--mesh);
+    background-attachment: fixed;
+    overflow-x: clip;
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  h1, h2, h3, h4 {
+    @apply font-heading font-bold;
+    text-wrap: balance;
+  }
+  p { text-wrap: pretty; }
+  ::selection { background: rgb(34 211 238 / 0.35); }
+  :focus-visible { @apply outline-none ring-2 ring-aqua ring-offset-2 ring-offset-bg; }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  .glass {
+    background: rgb(var(--glass) / var(--glass-alpha));
+    @apply backdrop-blur-xl border border-line/10 shadow-glass;
+  }
+  .glass-strong {
+    background: rgb(var(--glass) / 0.8);
+    @apply backdrop-blur-2xl border border-line/10 shadow-glass;
+  }
+  .text-gradient {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(100deg, #22d3ee 0%, #2dd4bf 45%, #8b5cf6 100%);
+  }
+  .text-gradient-aqua {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(100deg, #67e8f9 0%, #22d3ee 50%, #2dd4bf 100%);
+  }
+  .border-gradient {
+    position: relative;
+  }
+  .border-gradient::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(135deg, rgb(34 211 238 / 0.6), rgb(139 92 246 / 0.4), transparent 70%);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+  .eyebrow {
+    @apply inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-aqua;
+  }
+  .prose-ocean {
+    @apply text-muted leading-relaxed;
+  }
+  .prose-ocean h2 { @apply text-fg text-h3 mt-10 mb-3; }
+  .prose-ocean h3 { @apply text-fg text-lg mt-8 mb-2; }
+  .prose-ocean p { @apply my-3; }
+  .prose-ocean ul { @apply list-disc pl-6 my-3 space-y-1; }
+  .prose-ocean a { @apply text-aqua underline-offset-4 hover:underline; }
+}
+
+@layer utilities {
+  /* film grain overlay */
+  .grain::after {
+    content: "";
+    position: fixed;
+    inset: -50%;
+    width: 200%;
+    height: 200%;
+    pointer-events: none;
+    z-index: 60;
+    opacity: 0.06;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='0.9'/></svg>");
+    mix-blend-mode: overlay;
+  }
+  .dark .grain::after { opacity: 0.09; }
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  .mask-fade-x {
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+  }
+  .pause-on-hover:hover > * { animation-play-state: paused; }
+}

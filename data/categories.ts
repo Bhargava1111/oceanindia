@@ -1,0 +1,217 @@
+export type Category = {
+  slug: string;
+  name: string;
+  short: string;
+  description: string;
+  icon: "mic" | "waves" | "speaker" | "sliders" | "headphones" | "disc" | "guitar" | "cable" | "cpu" | "layers" | "gift" | "tag" | "recycle" | "zap";
+  accent: "aqua" | "teal" | "violet";
+  children?: { slug: string; name: string }[];
+  featured?: boolean;
+  image?: string;
+};
+
+export const categories: Category[] = [
+  {
+    slug: "microphones",
+    image: "/images/categories/microphones.webp",
+    name: "Microphones",
+    short: "Condenser, dynamic, wireless, USB",
+    description: "Studio condensers, stage dynamics, UHF wireless systems, broadcast and USB mics, plus shock mounts, pop filters and stands.",
+    icon: "mic",
+    accent: "aqua",
+    featured: true,
+    children: [
+      { slug: "condenser", name: "Condenser" },
+      { slug: "dynamic", name: "Dynamic" },
+      { slug: "wireless", name: "Wireless systems" },
+      { slug: "usb", name: "USB & podcast" },
+      { slug: "video", name: "On-camera & lavalier" },
+      { slug: "mic-accessories", name: "Mic accessories" },
+    ],
+  },
+  {
+    slug: "audio-interfaces",
+    image: "/images/categories/audio-interfaces.webp",
+    name: "Audio Interfaces",
+    short: "USB, Thunderbolt, Dante, HDX",
+    description: "From two-channel desktop boxes to 64-channel Thunderbolt and networked rigs with mastering-grade converters and clocking.",
+    icon: "cpu",
+    accent: "teal",
+    featured: true,
+    children: [
+      { slug: "usb", name: "USB" },
+      { slug: "thunderbolt", name: "Thunderbolt" },
+      { slug: "ethernet", name: "Dante / AVB" },
+      { slug: "hd", name: "Pro Tools HD / HDX" },
+    ],
+  },
+  {
+    slug: "studio-monitors",
+    image: "/images/categories/studio-monitors.webp",
+    name: "Studio Monitors",
+    short: "Nearfield, midfield, mains, subs",
+    description: "Reference monitors and subwoofers for tracking, mixing, mastering and immersive rooms — with room-correction options.",
+    icon: "speaker",
+    accent: "violet",
+    featured: true,
+    children: [
+      { slug: "nearfield", name: "Nearfield" },
+      { slug: "midfield", name: "Midfield & mains" },
+      { slug: "subwoofers", name: "Subwoofers" },
+    ],
+  },
+  {
+    slug: "preamps-channel-strips",
+    image: "/images/categories/preamps-channel-strips.webp",
+    name: "Preamps & Channel Strips",
+    short: "Preamps, EQ, compressors, 500-series",
+    description: "Outboard colour and control: mic preamps, equalisers, compressors, limiters, summing mixers and 500-series modules.",
+    icon: "sliders",
+    accent: "aqua",
+    children: [
+      { slug: "preamps", name: "Mic preamps" },
+      { slug: "eq", name: "Equalisers" },
+      { slug: "compressors", name: "Compressors & limiters" },
+      { slug: "channel-strips", name: "Channel strips" },
+      { slug: "500-series", name: "500-series" },
+      { slug: "summing", name: "Summing mixers" },
+    ],
+  },
+  {
+    slug: "mixers-consoles",
+    image: "/images/categories/mixers-consoles.webp",
+    name: "Mixers & Consoles",
+    short: "Digital, analog, control surfaces",
+    description: "Digital live consoles, analog desks, DAW control surfaces and stage boxes for studios, venues and houses of worship.",
+    icon: "layers",
+    accent: "teal",
+    children: [
+      { slug: "digital", name: "Digital mixers" },
+      { slug: "analog", name: "Analog mixers" },
+      { slug: "control-surfaces", name: "Control surfaces" },
+    ],
+  },
+  {
+    slug: "signal-processors",
+    image: "/images/categories/signal-processors.webp",
+    name: "Signal Processors",
+    short: "Mastering, converters, DI, clocks",
+    description: "Mastering processors, AD/DA converters, master clocks, DI boxes and PCIe cards.",
+    icon: "waves",
+    accent: "violet",
+    children: [
+      { slug: "mastering", name: "Mastering" },
+      { slug: "converters", name: "AD/DA & clocks" },
+      { slug: "di-boxes", name: "DI boxes" },
+    ],
+  },
+  {
+    slug: "live-sound",
+    image: "/images/categories/live-sound.webp",
+    name: "PA & Live Sound",
+    short: "Powered PA, subs, amps, portable",
+    description: "Powered and passive PA, subwoofers, power amplifiers, portable systems and speaker management for venues and events.",
+    icon: "zap",
+    accent: "aqua",
+    featured: true,
+    children: [
+      { slug: "powered-pa", name: "Powered PA speakers" },
+      { slug: "passive-pa", name: "Passive PA speakers" },
+      { slug: "subwoofers", name: "PA subwoofers" },
+      { slug: "amplifiers", name: "Power amplifiers" },
+      { slug: "portable", name: "Portable systems" },
+    ],
+  },
+  {
+    slug: "headphones",
+    image: "/images/categories/headphones.webp",
+    name: "Headphones",
+    short: "Studio, DJ, in-ear monitors",
+    description: "Closed and open-back studio references, DJ headphones, IEMs and headphone amplifiers.",
+    icon: "headphones",
+    accent: "teal",
+    featured: true,
+  },
+  {
+    slug: "dj-gear",
+    image: "/images/categories/dj-gear.webp",
+    name: "DJ Gear",
+    short: "Controllers, mixers, media players",
+    description: "DJ controllers, battle and club mixers, media players, turntables and DJ headphones.",
+    icon: "disc",
+    accent: "violet",
+    children: [
+      { slug: "controllers", name: "Controllers" },
+      { slug: "mixers", name: "DJ mixers" },
+      { slug: "players", name: "Media players & turntables" },
+    ],
+  },
+  {
+    slug: "musical-instruments",
+    image: "/images/categories/musical-instruments.webp",
+    name: "Musical Instruments",
+    short: "MIDI, keys, guitars, drums, strings",
+    description: "MIDI controllers and keyboards, digital pianos, synths, electric and acoustic guitars, drum kits and strings.",
+    icon: "guitar",
+    accent: "aqua",
+    featured: true,
+    children: [
+      { slug: "midi-controllers", name: "MIDI controllers" },
+      { slug: "keyboards-pianos", name: "Keyboards & pianos" },
+      { slug: "synthesizers", name: "Synthesizers" },
+      { slug: "guitars", name: "Guitars & amps" },
+      { slug: "drums", name: "Drums & percussion" },
+      { slug: "strings", name: "Violin, ukulele, mandolin" },
+    ],
+  },
+  {
+    slug: "acoustic-treatment",
+    image: "/images/categories/acoustic-treatment.webp",
+    name: "Acoustic Treatment",
+    short: "Absorbers, diffusers, bass traps",
+    description: "Broadband absorbers, bass traps, diffusers, ceiling clouds and isolation products for rooms that translate.",
+    icon: "waves",
+    accent: "teal",
+    children: [
+      { slug: "absorbers", name: "Absorbers & panels" },
+      { slug: "bass-traps", name: "Bass traps" },
+      { slug: "diffusers", name: "Diffusers" },
+      { slug: "isolation", name: "Isolation & decoupling" },
+    ],
+  },
+  {
+    slug: "software",
+    image: "/images/categories/software.webp",
+    name: "Software & DAWs",
+    short: "Pro Tools, Cubase, plugins",
+    description: "DAW licences, virtual instruments, plugin bundles and room-calibration software.",
+    icon: "cpu",
+    accent: "violet",
+    children: [
+      { slug: "daw", name: "DAWs" },
+      { slug: "instruments", name: "Virtual instruments" },
+      { slug: "plugins", name: "Plugins & calibration" },
+    ],
+  },
+  {
+    slug: "accessories",
+    image: "/images/categories/accessories.webp",
+    name: "Accessories & Stands",
+    short: "Cables, stands, power, bags",
+    description: "Cables and connectors, mic/speaker/keyboard stands, power conditioners, cases and bags.",
+    icon: "cable",
+    accent: "aqua",
+    children: [
+      { slug: "cables", name: "Cables & connectors" },
+      { slug: "stands", name: "Stands & mounts" },
+      { slug: "power", name: "Power conditioners" },
+      { slug: "cases", name: "Cases & bags" },
+    ],
+  },
+  { slug: "combo-offers", image: "/images/categories/combo-offers.webp", name: "Combo Offers", short: "Curated bundles, better pricing", description: "Studio, podcast and live bundles that pair the right gear and save you money.", icon: "gift", accent: "teal" },
+  { slug: "special-offers", image: "/images/categories/special-offers.webp", name: "Special Offers", short: "Limited-time pricing", description: "Open-box, clearance and promotional pricing on current stock.", icon: "tag", accent: "violet" },
+  { slug: "pre-owned", image: "/images/categories/pre-owned.webp", name: "Pre-owned Gear", short: "Inspected and warrantied", description: "Bench-tested pre-owned outboard, consoles and monitors with OceanIndia warranty.", icon: "recycle", accent: "aqua" },
+];
+
+export const getCategory = (slug: string) => categories.find((c) => c.slug === slug);
+export const featuredCategories = categories.filter((c) => c.featured);
